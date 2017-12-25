@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rock-Paper-Scissors</title>
+</head>
+<body>
+	<script>
+		function computerPlay() 
+			{
+				//Function to randomly generate Rock/Paper/Scissor for PC
+				let RandNumber = Math.floor((Math.random()*3)+1) //Give # between 1 and 3
+				if (RandNumber == 1) {
+					return "rock"
+				}else if(RandNumber == 2){
+					return "paper"
+				}else{
+					return "scissor"
+				}
+			}
+
+		function ChoosingWeapon(){
+					let test = prompt("Rock, Paper or Scissor?")
+					let playerSelection1 = test.toLowerCase()
+
+				while(playerSelection1 != "rock" && playerSelection1 != "scissor" && playerSelection1 != "paper") {
+					test = prompt("Error didnt choose properly. Re-Enter Choice")
+					playerSelection1 = test.toLowerCase()
+					}
+					return(playerSelection1)
+		}
+		function OneRound(playerchoice)
+			{
+				let computerSelection = computerPlay()
+				if (playerchoice == "rock" && computerSelection == "scissor") 
+				{
+					return "win"
+				} else if (playerchoice == "paper" && computerSelection == "rock") 
+				{
+					return "win"
+				} else if (playerchoice == "scissor" && computerSelection == "paper") 
+				{
+					return "win"
+				}if (computerSelection == "rock" && playerchoice == "scissor") 
+				{
+					return "lose"
+				} else if (computerSelection == "paper" && playerchoice == "rock") 
+				{
+					return "lose"
+				} else if (computerSelection == "scissor" && playerchoice == "paper") 
+				{
+					return "lose"
+				}else{
+					return "draw"
+				}
+			}
+
+		function Game(){
+			let playerscore = 0
+			let computerscore = 0
+				for (var i = 0; i < 20; i++) {
+
+					let weapon = ChoosingWeapon()
+					let Round = OneRound(weapon)
+					if (Round == "win") {
+						console.log("You win Round " + i)
+						playerscore++
+					}else if(Round == "lose"){
+						console.log("You lose Round " + i)
+						computerscore++
+					}else{
+						console.log("Round " + i + " is a draw")
+					}
+
+				if (playerscore == 3) {
+					return "You won the 5 round game!"
+				}else if (computerscore == 3) {
+					return "You lost the 5 round game!"
+				}
+				}
+		}
+
+		console.log(Game())
+
+	</script>
+</body>
+</html>
